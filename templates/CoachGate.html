@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>IUGYM - Coach Gate</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!--    <link href="BS.css" rel="stylesheet">-->
+    <!--    <script src="BS_JS.js"></script>-->
+
+</head>
+<body>
+
+<div class="p-1 bg-primary text-white text-center">
+    <h1>Coach Gate</h1>
+    <p>Welcome Coach!</p>
+</div>
+
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+    <div class="container-fluid">
+        <ul class="navbar-nav">
+
+            <li class="nav-item">
+                <a class="nav-link " href="{{ url_for('CoachGate')}}" >Home</a>
+            </li>
+
+
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('TraineeTable')}}">Trainee Table</a>
+            </li>
+
+
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('MachineTable')}}">Machine Table</a>
+            </li>
+
+        </ul>
+    </div>
+</nav>
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-sm-4">
+            <h2>Welcome you are in </h2>
+
+            <p>Hi...</p>
+        </div>
+    </div>
+
+
+</div>
+
+<div class="mt-5 p-1 bg-dark text-white text-center">
+    <p>Footer</p>
+</div>
+
+</body>
+</html>
