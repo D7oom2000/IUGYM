@@ -104,5 +104,19 @@ def MachineList():
         error = ex
     return error, data
 
+def StoreList():
+    error = ""
+    data = ""
+    try:
+        conn = sqlite3.connect(db_path)
+        cur = conn.cursor()
+        cur.execute("select * from Store")
+        conn.commit()
+        data = cur.fetchall()
+    except Exception as ex:
+        error = ex
+    return error, data
+
+
 #================================================================================
 

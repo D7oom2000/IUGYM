@@ -1,8 +1,4 @@
-from flask import *
-import sys
 
-import sqlite3
-from sqlite3 import Error
 from GYMDB import *
 from flask import Flask, request, redirect, render_template
 
@@ -214,12 +210,10 @@ def TraineeTable():
     else:
         return render_template("TraineesList.html", result=error)
 
-
 # ==============================================================================
 @app.route('/trainee_list_link', methods=['GET', 'POST'])
 def GoTraineetable():
     return render_template('TraineesList.html')
-
 
 # ==============================================================================
 @app.route('/machine_list_url')
@@ -229,18 +223,42 @@ def MachineTable():
         return render_template("MachinesList.html", value=data)
     else:
         return render_template("MachinesList.html", result=error)
-
-
 # ==============================================================================
 @app.route('/trainee_list_link', methods=['GET', 'POST'])
 def GoMachinetable():
     return render_template('MachinesList.html')
 
+# ==============================================================================
+@app.route('/Cstore_list_link', methods=['GET', 'POST'])
+def GoCStoretable():
+    return render_template('StoreList.html')
 
 # ==============================================================================
-# @app.route('/update_product_link', methods=['GET', 'POST'])
-# def update_product_url():
-#     return render_template('add_product.html')
+@app.route('/Cstore_list_url')
+def CStoreTable():
+    error, data = StoreList()
+    if error == "":
+        return render_template("CStoreList.html", value=data)
+    else:
+        return render_template("CStoreList.html", result=error)
+# ==============================================================================
+@app.route('/Tstore_list_link', methods=['GET', 'POST'])
+def GoTStoretable():
+    return render_template('TStoreList.html')
+
+
+# ==============================================================================
+@app.route('/Tstore_list_url')
+def TStoreTable():
+    error, data = StoreList()
+    if error == "":
+        return render_template("TStoreList.html", value=data)
+    else:
+        return render_template("TStoreList.html", result=error)
+# ==============================================================================
+
+
+
 # #==============================================================================
 # @app.route('/add_product', methods=['POST', 'GET'])
 # def add_product_fun():
@@ -250,88 +268,7 @@ def GoMachinetable():
 #         return render_template('add_product.html', result=msg)
 # ==============================================================================
 
-# =================================================================================
-
-# class TraineeChangePass(QDialog): # defining UI of change Trainee password page and its fields
-#     def __init__(self):
-#         super(TraineeChangePass, self).__init__()
-#         loadUi(r"C:\Users\dhooo\PycharmProjects\GYMProject\TNewPass.ui", self)
-#
-#         self.TPassword.setEchoMode(QtWidgets.QLineEdit.Password)
-#         self.TNewPass.setEchoMode(QtWidgets.QLineEdit.Password)
-#         self.TChangePass.clicked.connect(self.ChangeTraineePass)
-#
-#     # =====================================================================================
-#     def ChangeTraineePass(self): # Change Trainee password function
-#         TUsername = self.TUsername.text()
-#         TPassword = self.TPassword.text()
-#         TNewPass = self.TNewPass.text()
-#         conn = sqlite3.connect(r".\GYMProject.db")
-#         cur = conn.cursor()
-#         query = 'SELECT TPass FROM Trainee WHERE TName =?'
-#         cur.execute(query, [TUsername])
-#         result = cur.fetchall()
-#
-#         if len(TUsername) == 0 or len(TPassword) == 0 or len(TNewPass) == 0:
-#             self.ErrorReg.setText("Please input all fields.")
-#         elif len(result) == 0:
-#             QMessageBox.information(None, "Error!", "Invalid username!", )
-#         elif len(result) == 1:
-#             if str(result[0][0]) != TPassword:
-#                 QMessageBox.information(None, "Error!", "Wrong password!", )
-#             else:
-#                 cur = conn.cursor()
-#                 cur.execute('UPDATE Trainee set TPass = ? WHERE TName =?', (TNewPass, TUsername))
-#                 conn.commit()
-#                 QMessageBox.information(None, "Completed!", "Password successfully Changed!", )
-# # =================================================================================
-# class TraineeGate(QDialog):  # Trainee Gate
-#     def __init__(self):
-#         super(TraineeGate, self).__init__()
-#         loadUi(r"C:\Users\dhooo\PycharmProjects\GYMProject\TraineeGate.ui", self)
-
-# == Cancel Trainee's subscription was not implemented! == #
-
-# self.CancelSub.clicked.connect(self.OpenCancelSub)
-# =================================================================================
-# def OpenCancelSub(self):
-#     CancelSub = CancelSubscription()
-#     widget.addWidget(CancelSub)
-#     widget.setCurrentIndex(widget.currentIndex() + 1)
-# =================================================================================
-# class CancelSubscription():
-# def __init__(self):
-# super(CancelSubscription,self).__init__()
-# loadUi(r"C:\Users\dhooo\PycharmProjects\GYMProject\CancelSub.ui",self)
-# self.TPassword.setEchoMode(QtWidgets.QLineEdit.Password)
-# self.CancelSub.clicked.connect(self.CancelSubFun)
-# ==================================================================================
-# def CancelSubFun(self): # Cancel Subscription function
-#  TUsername = self.TUsername.text()
-# TPassword = self.TPassword.text()
-
-#  conn = sqlite3.connect(r".\GYMProject.db")
-# cur = conn.cursor()
-# query = 'SELECT * FROM Trainee WHERE TName =?'
-# cur.execute(query, [TUsername])
-# result = cur.fetchall()
-
-# if len(TUsername) == 0 or len(TPassword) == 0:
-#   self.ErrorReg.setText("Please input all fields.")
-# elif len(result) == 0:
-#    QMessageBox.information(None, "Error!", "Invalid username!", )
-# elif len(result) == 1:
-#    if str(result[0][0]) != TPassword:
-#      QMessageBox.information(None, "Error!", "Wrong password!", )
-# else:
-#    cur = conn.cursor()
-#   cur.execute('DELETE FROM Trainee  WHERE TPass = ? And TName =?', (TPassword, TUsername))
-#  conn.commit()
-#  QMessageBox.information(None, "Completed!", "Subscription successfully Canceled!", )
-# ==================================================================================
-
-
 # =============================================================
-if __name__ == '__main__':
-    app.run(host='localhost', port='5555', debug=True)
+# if __name__ == '__main__':
+#     app.run(host='localhost', port='5555', debug=True)
 # =============================================================

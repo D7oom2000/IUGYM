@@ -35,6 +35,13 @@ def create_Trainee(conn,Trainee):
     conn.commit()
     return cur.lastrowid
 
+def create_Store(conn,Store):
+    sql = " INSERT INTO Store(ItemName,ItemPrice,ItemQuantity, ItemDescription) VALUES(?,?,?,?)"
+    cur = conn.cursor()
+    cur.execute(sql,Store)
+    conn.commit()
+    return cur.lastrowid
+
 # main method conatins the direction of DB file and data insertion
 
 def DBmain():
@@ -42,6 +49,7 @@ def DBmain():
 
     conn = create_connection(database)
     with conn:
+
         Coach_1 = ('Talal', '123', '22')
         Coach_2 = ('Abdo', '1234', '21')
         Coach_3 = ('Sultan', '12345', '20')
@@ -131,7 +139,52 @@ def DBmain():
         create_Trainee(conn,Trainee_19)
         create_Trainee(conn,Trainee_20)
 
+        Store_1 = ('Muscletech', '150', '50', 'Premium 100% Whey Protein Plus 5 Lb')
+        Store_2 = ('LAPERVA ISO', '200', '10', 'Protein powder with 28g protein per 30g serving')
+        Store_3 = ('LAPERVA Sports Bar', '20', '30', 'Premium Sugar-free Belgian chocolate bar')
+        Store_4 = ('WOWTEIN', '190', '20', 'The package contains 80 portions')
+        Store_5 = ('Laperva Keto Cola', '7', '40', 'Refreshing keto cola soft drink')
+        Store_6 = ('Protein Shaker Max – Onyx', '70', '20', 'Optimal Workout Accessories')
+        Store_7 = ('PACK OF 5 – SQUATWOLF MINI POWER BANDS', '40', '10', 'Power Bands is a set of 5 bands')
+        Store_8 = ('LAB360º Headband – Dark Gull Grey', '60', '15', 'The LAB360º headband is engineered with a double-layer construction')
+        Store_9 = ('HALF GALLON BOTTLE – KHAKI', '105', '6', 'Always stay hydrated with the Half Gallon Bottle. ')
+        Store_10 = ('SQUATWOLF SKIPPING ROPE – SILVER', '95', '12', 'QUATWOLF’s multi-purpose sturdy skipping')
+        Store_11 = ('PACK OF 2 – GRAPHENE ENHANCED MASK', '105', '18', 'The Graphene Enhanced Mask is a technical face mask')
+        Store_12 = ('PACK OF 2 – POLYGIENE®', '65', '30', 'Four-LAYER REUSABLE MASK – KEFFIYEH')
+        Store_13 = ('CORE HOLDALL SMALL – ONYX', '230', '40', 'Core Holdall is your go to bag for all scenarios')
+        Store_14 = ('CORE BUMBAG – ONYX', '130', '80', 'It is a multi-purpose bag given its storage functionality')
+        Store_15 = ('SQUATWOLF 3D SLIDERS – MEN – ONYX', '130', '9', 'RComfortable Footwear Slide into comfortable footwear ')
+        Store_16 = ('LREBEL BEANIE – ONYX', '85', '7', 'A beanie with a statement, the Rebel Beanie')
+        Store_17 = ('LAB360º PERFORMANCE', '120', '100', 'The LAB360º Performance Cap is super-lightweight')
+        Store_18 = ('PACK OF 3 – CORE CREW SOCKS – ONYX', '90', '13', 'Made with premium cotton')
+        Store_19 = ('SQUATWOLF POWER BAND – HEAVY', '105', '25', 'Resistance Level: 25-75kg / Heavy')
+        Store_20 = ('EAD THE PACK CAP – WHITE', '120', '29', 'The Pack’ Cap features a cotton base with embroidered logo ')
+
+
+        create_Store(conn,Store_1)
+        create_Store(conn, Store_2)
+        create_Store(conn, Store_3)
+        create_Store(conn, Store_4)
+        create_Store(conn, Store_5)
+        create_Store(conn, Store_6)
+        create_Store(conn, Store_7)
+        create_Store(conn, Store_8)
+        create_Store(conn, Store_9)
+        create_Store(conn, Store_10)
+        create_Store(conn, Store_11)
+        create_Store(conn, Store_12)
+        create_Store(conn, Store_13)
+        create_Store(conn, Store_14)
+        create_Store(conn, Store_15)
+        create_Store(conn, Store_16)
+        create_Store(conn, Store_17)
+        create_Store(conn, Store_18)
+        create_Store(conn, Store_19)
+        create_Store(conn, Store_20)
+
+
+
 
 # if __name__ == '__main__':
-#    DBmain()
+#     DBmain()
 
