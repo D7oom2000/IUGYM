@@ -117,6 +117,20 @@ def StoreList():
         error = ex
     return error, data
 
+def AddProducts(form_inputs):
+    try:
+        conn = sqlite3.connect(db_path)
+        cur = conn.cursor()
+        name = form_inputs['name']
+        price = form_inputs['price']
+        quantity = form_inputs['quantity']
+        query = 'insert into Store (ItemName, ItemPrice, ItemQuantity) values (?,?,?)'
+        cur.execute(query, [name, float(price), int(quantity)])
+        conn.commit()
+    except Exception as ex:
+        return ex
+    return 'Products Added Successfully!'
+
 
 #================================================================================
 

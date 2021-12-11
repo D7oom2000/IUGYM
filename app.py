@@ -152,8 +152,6 @@ def trainee_register_url():
             con.close()
 
 # ===============================================================================
-
-# ===============================================================================
 @app.route('/trainee_changepass_link', methods=['GET', 'POST'])
 def Goto_Trainee_Changepass():
     return render_template('Trainee_Changepass.html')
@@ -246,7 +244,6 @@ def CStoreTable():
 def GoTStoretable():
     return render_template('TStoreList.html')
 
-
 # ==============================================================================
 @app.route('/Tstore_list_url')
 def TStoreTable():
@@ -256,16 +253,34 @@ def TStoreTable():
     else:
         return render_template("TStoreList.html", result=error)
 # ==============================================================================
-
-
-
+@app.route('/add_product_link', methods=['GET', 'POST'])
+def add_product_url():
+    return render_template('add_product.html')
 # #==============================================================================
-# @app.route('/add_product', methods=['POST', 'GET'])
-# def add_product_fun():
-#     if request.method == 'POST':
-#         form_inputs = request.form
-#         msg = insert(form_inputs)
-#         return render_template('add_product.html', result=msg)
+@app.route('/add_product', methods=['POST', 'GET'])
+def Add_Product():
+    error = ''
+    if request.method == 'POST':
+        try:
+            name = request.form['PName']
+            price = request.form['PPrice']
+            quantity = request.form['PQuantity']
+
+            if len(name) == 0 or len(price) == 0 or len(quantity) == 0:
+                error = "Please input all fields."
+            else:
+              with sqlite3.connect(r"C:\Users\dhooo\PycharmProjects\GYMProjectFlask\GYMProject.db") as conn:
+                cur = conn.cursor()
+                cur.execute('INSERT INTO Store (ItemName, ItemPrice, ItemQuantity) VALUES (?,?,?)', (name,float(price),int(quantity)))
+                conn.commit()
+                error = "Products Added Successfully!"
+        except:
+            conn.rollback()
+            error = "Invalid Inputs!"
+        finally:
+            return render_template("add_product.html", error=error)
+            con.close()
+
 # ==============================================================================
 
 # =============================================================
