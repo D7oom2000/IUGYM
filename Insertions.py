@@ -13,7 +13,7 @@ def create_connection(db_file):
     except Error as e:
         print(e)
     return conn
-
+#
 def create_Coach(conn,Coach):
     sql = " INSERT INTO Coach(CName,CPass,CAge) VALUES(?,?,?)"
     cur = conn.cursor()
@@ -29,7 +29,7 @@ def create_Machine(conn,Machine):
     return cur.lastrowid
 
 def create_Trainee(conn,Trainee):
-    sql = " INSERT INTO Trainee(TName,TPass,TAge,Sub_Status) VALUES(?,?,?,?)"
+    sql = " INSERT INTO Trainee(TName,TPass,TAge,Sub_Status, Balance) VALUES(?,?,?,?,?)"
     cur = conn.cursor()
     cur.execute(sql,Trainee)
     conn.commit()
@@ -38,7 +38,7 @@ def create_Trainee(conn,Trainee):
 # main method conatins the direction of DB file and data insertion
 
 def DBmain():
-    database = r"C:\Users\dhooo\Desktop\Special for Laptop\Books And Solution\about the university\Third Year of The Specialize\Advanced Programming\Project\GYMProject-Final Project\GYMProject.db"
+    database = r"C:\Users\dhooo\PycharmProjects\GYMProjectFlask\GYMProject.db"
 
     conn = create_connection(database)
     with conn:
@@ -89,26 +89,26 @@ def DBmain():
         create_Machine(conn,Machine_15)
 
 
-        Trainee_1 = ('Omar', '123', '23', 'Valid')
-        Trainee_2 = ('Ahmed', '123', '28', 'Valid')
-        Trainee_3 = ('Abdo', '123', '23', 'Valid')
-        Trainee_4 = ('Hamed', '1234', '30', 'Valid')
-        Trainee_5 = ('Mohamed', '1234', '24', 'Valid')
-        Trainee_6 = ('Suad', '1234', '42', 'Valid')
-        Trainee_7 = ('Saleh', '12345', '34', 'Valid')
-        Trainee_8 = ('Mazen', '12345', '48', 'Valid')
-        Trainee_9 = ('Ryan', '12345', '36', 'Valid')
-        Trainee_10 = ('Khaled', '123456', '23', 'Valid')
-        Trainee_11 = ('Ibrahim', '123456', '19', 'Valid')
-        Trainee_12 = ('Fahad', '123456', '32', 'Valid')
-        Trainee_13 = ('Faisal', '1234567', '33', 'Valid')
-        Trainee_14 = ('Faris', '1234567', '28', 'Valid')
-        Trainee_15 = ('Badr', '1234567', '29', 'Valid')
-        Trainee_16 = ('Bandar', '12345678', '34', 'Valid')
-        Trainee_17 = ('Yassir', '12345678', '47', 'Valid')
-        Trainee_18 = ('Yousef', '12345678', '17', 'Valid')
-        Trainee_19 = ('Naif', '123456789', '26', 'Valid')
-        Trainee_20 = ('Bassam', '123456789', '25', 'Valid')
+        Trainee_1 = ('Omar', '123', '23', 'Valid', '15000')
+        Trainee_2 = ('Ahmed', '123', '28', 'Valid', '12000')
+        Trainee_3 = ('Abdo', '123', '23', 'Valid', '10000')
+        Trainee_4 = ('Hamed', '1234', '30', 'Valid', '5000')
+        Trainee_5 = ('Mohamed', '1234', '24', 'Valid', '4000')
+        Trainee_6 = ('Suad', '1234', '42', 'Valid', '6000')
+        Trainee_7 = ('Saleh', '12345', '34', 'Valid', '2000')
+        Trainee_8 = ('Mazen', '12345', '48', 'Valid', '1200')
+        Trainee_9 = ('Ryan', '12345', '36', 'Valid', '1000')
+        Trainee_10 = ('Khaled', '123456', '23', 'Valid', '1800')
+        Trainee_11 = ('Ibrahim', '123456', '19', 'Valid', '2700')
+        Trainee_12 = ('Fahad', '123456', '32', 'Valid', '9000')
+        Trainee_13 = ('Faisal', '1234567', '33', 'Valid', '10000')
+        Trainee_14 = ('Faris', '1234567', '28', 'Valid', '2500')
+        Trainee_15 = ('Badr', '1234567', '29', 'Valid', '5500')
+        Trainee_16 = ('Bandar', '12345678', '34', 'Valid', '3000')
+        Trainee_17 = ('Yassir', '12345678', '47', 'Valid', '3100')
+        Trainee_18 = ('Yousef', '12345678', '17', 'Valid', '9000')
+        Trainee_19 = ('Naif', '123456789', '26', 'Valid', '16000')
+        Trainee_20 = ('Bassam', '123456789', '25', 'Valid', '10000')
 
         create_Trainee(conn,Trainee_1)
         create_Trainee(conn,Trainee_2)

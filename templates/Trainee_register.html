@@ -27,12 +27,12 @@
 
 
             <li class="nav-item">
-                <a class="nav-link" href="{{ url_for('coach_login')}}">Coach Gate</a>
+                <a class="nav-link" href="{{ url_for('trainee_login')}}">Trainee Login</a>
             </li>
 
 
             <li class="nav-item">
-                <a class="nav-link" href="{{ url_for('trainee_login')}}">Trainee Gate</a>
+                <a class="nav-link" href="{{ url_for('Goto_Trainee_Register')}}">Trainee Registration</a>
             </li>
 
         </ul>
@@ -43,12 +43,12 @@
 <div class="container mt-5">
     <div class="row">
         <div class="col-sm-4">
-            <form action="/login" , method="post">
+            <form action="/trainee_register_url" , method="post">
 
                 <div class="form-group row">
                     <label for="name" class="col-4 col-form-label">User Name</label>
                     <div class="col-8">
-                        <input id="name" name="user_name" placeholder="Enter user Name" type="text" class="form-control"
+                        <input id="name" name="TNameReg" placeholder="Enter user Name" type="text" class="form-control"
                                required>
                     </div>
                 </div>
@@ -56,9 +56,9 @@
                 </br>
 
                 <div class="form-group row">
-                    <label for="price" class="col-4 col-form-label">password</label>
+                    <label for="password" class="col-4 col-form-label">password</label>
                     <div class="col-8">
-                        <input id="price" name="password" placeholder="Enter password" type="password"
+                        <input id="password" name="TPassReg" placeholder="Enter password" type="password"
                                class="form-control" required>
                     </div>
                 </div>
@@ -66,9 +66,9 @@
                  </br>
 
                 <div class="form-group row">
-                    <label for="price" class="col-4 col-form-label"> Confirm Password</label>
+                    <label for="confpass" class="col-4 col-form-label"> Confirm Password</label>
                     <div class="col-8">
-                        <input id="price" name="password" placeholder="Enter password" type="password"
+                        <input id="confpass" name="TPassConf" placeholder="Confirm Password" type="password"
                                class="form-control" required>
                     </div>
                 </div>
@@ -76,19 +76,34 @@
                 </br>
 
                 <div class="form-group row">
-                    <label for="price" class="col-4 col-form-label">password</label>
+                    <label for="tage" class="col-4 col-form-label">Age</label>
                     <div class="col-8">
-                        <input id="price" name="password" placeholder="Enter password" type="password"
+                        <input id="tage" name="TAge" placeholder="Enter Age" type="number"
                                class="form-control" required>
                     </div>
                 </div>
 
+                </br>
+
+                <br>
+                <div class="form-group row">
+                    <label for="balance" class="col-4 col-form-label">Balance</label>
+                    <div class="col-8">
+                        <input id="balance" name="Balance" placeholder="Enter Balance" type="number"
+                               class="form-control" required>
+                    </div>
+                </div>
+
+                </br>
 
 
+                {% if error %}
+                    <p><strong>Error</strong>: {{error}}</p>
+                {% endif %}
 
-                <button class="btn btn-primary btn-block my-4" type="submit">Sign in</button>
 
-                <input class="btn btn-warning btn-block my-4" type="button" onclick="myFunction()" value="Reset form">
+                <button class="btn btn-primary btn-block my-4" type="submit">Sign up</button>
+
             </form>
         </div>
     </div>
@@ -98,13 +113,6 @@
 <div class="mt-5 p-1 bg-black text-white text-center">
     <p>Footer</p>
 </div>
-
-
-<script>
-    function myFunction() {
-        document.getElementById("myForm").reset();
-    }
-</script>
 
 </body>
 </html>
