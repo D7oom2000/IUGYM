@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>IUGYM - View Trainees</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!--    <link href="BS.css" rel="stylesheet">-->
+    <!--    <script src="BS_JS.js"></script>-->
+
+</head>
+<body>
+
+<div class="p-1 bg-primary text-white text-center">
+    <h1>Trainees</h1>
+    <p>Trainee List</p>
+</div>
+
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+    <div class="container-fluid">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link " href="{{ url_for('CoachGate')}}" >Home</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('MachineTable')}}">View Machine</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('CStoreTable')}}">View Store</a>
+            </li>
+
+        </ul>
+    </div>
+</nav>
+
+<div class="container mt-5">
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th>Trainee ID</th>
+            <th>Trainee Name</th>
+            <th>Age</th>
+            <th>Subscription Status</th>
+            <th>Balance</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for row in value %}
+        <tr>
+            <td>{{row[0]}}</td>
+            <td>{{row[1]}}</td>
+            <td>{{row[2]}}</td>
+            <td>{{row[3]}}</td>
+            <td>{{row[4]}}</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+{{result}}
+<div class="mt-5 p-1 bg-dark text-white text-center">
+    <p>Footer</p>
+</div>
+
+</body>
+</html>
