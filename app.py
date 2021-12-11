@@ -73,16 +73,52 @@ def coach_register_url():
             elif int(cage) < 16:
                 error = 'Illegal Age!'
             else:
-              with sqlite3.connect(r"C:\Users\dhooo\PycharmProjects\GYMProjectFlask\GYMProject.db") as con:
-                cur = con.cursor()
+              with sqlite3.connect(r"C:\Users\dhooo\PycharmProjects\GYMProjectFlask\GYMProject.db") as conn:
+                cur = conn.cursor()
                 cur.execute('INSERT INTO Coach (CName, CPass, CAge) VALUES (?,?,?)', (user_name,password,cage))
-                con.commit()
+                conn.commit()
                 error = "Coach registered successfully!"
         except:
-            con.rollback()
+            conn.rollback()
             error = "Invalid Inputs!"
         finally:
             return render_template("Coach_register.html", error=error)
+            con.close()
+
+# ===============================================================================
+@app.route('/coach_changepass_link', methods=['GET', 'POST'])
+def Goto_Coach_Changepass():
+    return render_template('Coach_Changepass.html')
+# ===============================================================================
+@app.route('/coach_ChangePass_url', methods=['GET', 'POST'])
+def coach_ChangePass_url():
+    error = ''
+    if request.method == 'POST':
+        try:
+            user_name = request.form['CNameChange']
+            password = request.form['CPassChange']
+            newpass = request.form['CPassNew']
+
+            conn = sqlite3.connect(r"C:\Users\dhooo\PycharmProjects\GYMProjectFlask\GYMProject.db")
+            cur = conn.cursor()
+            query = 'SELECT CPass FROM Coach WHERE CName =?'
+            cur.execute(query, [user_name])
+            result = cur.fetchall()
+            if len(result) == 0:
+                error = "Invalid username!"
+            elif len(result) == 1:
+                if str(result[0][0]) != password:
+                    error = "Wrong password!"
+                else:
+                    cur = conn.cursor()
+                    cur.execute('UPDATE Coach set CPass = ? WHERE CName =?', (newpass, user_name))
+                    conn.commit()
+                    error = "Password successfully Changed!"
+        except:
+            conn.rollback()
+            error = "Invalid Inputs!"
+        finally:
+            return render_template("Coach_Changepass.html", error=error)
             con.close()
 
 # ===============================================================================
@@ -107,19 +143,55 @@ def trainee_register_url():
             elif int(balance) <= 99:
                 error = 'Balance must be at least 100!'
             else:
-              with sqlite3.connect(r"C:\Users\dhooo\PycharmProjects\GYMProjectFlask\GYMProject.db") as con:
-                cur = con.cursor()
+              with sqlite3.connect(r"C:\Users\dhooo\PycharmProjects\GYMProjectFlask\GYMProject.db") as conn:
+                cur = conn.cursor()
                 cur.execute('INSERT INTO Trainee (TName, TPass, TAge, Balance) VALUES (?,?,?,?)', (user_name,password,cage,balance))
-                con.commit()
+                conn.commit()
                 error = "Trainee registered successfully!"
         except:
-            con.rollback()
+            conn.rollback()
             error = "Invalid Inputs!"
         finally:
             return render_template("Trainee_register.html", error=error)
             con.close()
 
-# ====================================================
+# ===============================================================================
+
+# ===============================================================================
+@app.route('/trainee_changepass_link', methods=['GET', 'POST'])
+def Goto_Trainee_Changepass():
+    return render_template('Trainee_Changepass.html')
+# ===============================================================================
+@app.route('/trainee_ChangePass_url', methods=['GET', 'POST'])
+def trainee_ChangePass_url():
+    error = ''
+    if request.method == 'POST':
+        try:
+            user_name = request.form['TNameChange']
+            password = request.form['TPassChange']
+            newpass = request.form['TPassNew']
+
+            conn = sqlite3.connect(r"C:\Users\dhooo\PycharmProjects\GYMProjectFlask\GYMProject.db")
+            cur = conn.cursor()
+            query = 'SELECT TPass FROM Trainee WHERE TName =?'
+            cur.execute(query, [user_name])
+            result = cur.fetchall()
+            if len(result) == 0:
+                error = "Invalid username!"
+            elif len(result) == 1:
+                if str(result[0][0]) != password:
+                    error = "Wrong password!"
+                else:
+                    cur = conn.cursor()
+                    cur.execute('UPDATE Trainee set TPass = ? WHERE TName =?', (newpass, user_name))
+                    conn.commit()
+                    error = "Password successfully Changed!"
+        except:
+            conn.rollback()
+            error = "Invalid Inputs!"
+        finally:
+            return render_template("Trainee_Changepass.html", error=error)
+            con.close()
 
 # ===============================================================================
 @app.route('/coach_gate_link', methods=['GET', 'POST'])
